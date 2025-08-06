@@ -5,7 +5,7 @@ Built with ❤️ using **Next.js**, **TypeScript**, **Tailwind CSS**, and ✨ a
 
 ## 🚀 Live Demo
 
-🔗 [Visit Portfolio]()
+🔗 [Visit Portfolio](<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0bcf6065-3fcf-46a8-9b6a-4364ca21ad66" />)
 
 ## 📌 Features
 
