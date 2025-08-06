@@ -1,11 +1,11 @@
 #  Shravya's Portfolio Website
 
 Welcome to my personal portfolio website!  
-Built with ❤️ using **Next.js**, **TypeScript**, **Tailwind CSS**, and ✨ animations powered by **Framer Motion** and **GSAP** – this site showcases my journey, projects, skills, certifications, and experiences as a cybersecurity enthusiast and tech explorer.
+Built with ❤️ using **Next.js**, **TypeScript**, **Tailwind CSS**, and animations powered by **Framer Motion** and **GSAP** – this site showcases my journey, projects, skills, certifications, and experiences as a cybersecurity enthusiast and tech explorer.
 
 ## 🚀 Live Demo
 
-🔗 [Visit Portfolio](<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0bcf6065-3fcf-46a8-9b6a-4364ca21ad66" />)
+🔗 [Visit Portfolio](https://shravyar.vercel.app/)
 
 ## 📌 Features
 
@@ -30,8 +30,9 @@ Built with ❤️ using **Next.js**, **TypeScript**, **Tailwind CSS**, and ✨ a
 🌐 Deployment
 This portfolio is deployed on Vercel, optimized for performance and SEO.
 
-📬 Contact
- Email: shravya11r@gmail.com
+## 📬 Contact
+
+Email: shravya11r@gmail.com
 
 [LinkedIn](https://www.linkedin.com/in/shravya-r-32913028b)
 
