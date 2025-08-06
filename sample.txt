@@ -1,0 +1,53 @@
+<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Shravya R
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Cybersecurity enthusiast dedicated to building secure digital environments and protecting against emerging threats.
+            </p>
+          </div>
+
+          {/* <div>
+            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <div className="space-y-2">
+              {['About', 'Skills', 'Experience', 'Education', 'Projects', 'Contact'].map((link) => (
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  className="block text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
+          </div> */}
+
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Connect</h4>
+            <div className="flex space-x-4">
+              <a
+                href="https://github.com/shravya235"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/shravya-r-32913028b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="mailto:shravya11r@gmail.com"
+                className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
