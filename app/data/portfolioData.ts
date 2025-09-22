@@ -114,6 +114,20 @@ export const education: Education[] = [
 
 export const certifications: Certification[] = [
   {
+    name: "Privacy-Preserving Federated Learning Internship",
+    issuer: "Nitte Centre of Excellence for Applied AI, NMAM Institute of Technology",
+    date: "June 2025 – August 2025",
+    credentialId: "N/A",
+    status: "Completed"
+  },
+  {
+    name: "Joint Secretary – PROTON (Cybersecurity Association)",
+    issuer: "Department of Cybersecurity, NMAM Institute of Technology",
+    date: "Academic Year 2024 – 2025",
+    credentialId: "NNM23CB053",
+    status: "Completed"
+  },
+  {
     name: "Cybersecurity Analyst Job Simulation",
     issuer: "Tata Group via Forage",
     date: "March 2025",
@@ -159,13 +173,34 @@ export const certifications: Certification[] = [
 
 export const experiences: Experience[] = [
   {
+    title: "Cybersecurity Intern",
+    company: "Vill Design, Japan",
+    period: "September 2025 – Present",
+    description: [
+      "Selected as one of eight students from NMAM Institute of Technology for a prestigious 2-month international internship.",
+      "Collaborating with a global team on cybersecurity projects while gaining exposure to Japanese work culture and secure development practices.",
+      "Working on real-world security challenges to strengthen skills in penetration testing, network defense, and privacy-preserving solutions."
+    ]
+  },
+  {
+  title: "Cybersecurity Workshop Trainee",
+  company: "Thaniya Technologies & NMAMIT",
+  period: "10-day program – July 2025",
+  description: [
+    "Completed an intensive 10-day workshop simulating real-world cyberattack scenarios.",
+    "Practiced Web and Network Penetration Testing with industry-standard methodologies.",
+    "Solved daily Capture the Flag (CTF) challenges to develop adversarial and problem-solving skills.",
+    "Identified and reported vulnerabilities aligned with OWASP Top 10 and completed structured quizzes to reinforce key security concepts."
+    ]
+  },
+  {
     title: "Research Intern - Machine Learning & Deep Learning",
     company: "Nitte Centre of Excellence, NMAM Institute of Technology, Nitte",
-    period: "June 2025 – Present",
+    period: "June 2025 – August 2025",
     description: [
       "Conducting research on Federated Learning models and privacy-preserving AI.",
       "Training ML models like Deep MLP, MLP and Logistic Regression on structured medical dataset.",
-      "Implementing Differential Privacy and secure aggregration techniques with analysis of model performance."
+      "Implementing Differential Privacy and secure aggregation techniques with analysis of model performance."
     ]
   }
 ];
