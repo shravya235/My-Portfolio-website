@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Award, Calendar, ExternalLink } from 'lucide-react';
 import { certifications } from '../data/portfolioData';
+import { MotionCard } from './MotionCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,49 +68,64 @@ export default function Certifications() {
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className="cert-card group bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="cert-card h-full"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl">
-                    <Award className="w-6 h-6 text-white" />
+              <a 
+                href={cert.link || "#"} 
+                target={cert.link ? "_blank" : "_self"}
+                rel={cert.link ? "noopener noreferrer" : undefined}
+                className={`block h-full outline-none ${!cert.link ? "cursor-default" : "cursor-pointer"} transform hover:-translate-y-2 transition-all duration-300`}
+                onClick={(e) => !cert.link && e.preventDefault()}
+              >
+                <div className="group h-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-all duration-300">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl">
+                        <Award className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 pr-6">
+                          {cert.name}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400 font-medium">
+                          {cert.issuer}
+                        </p>
+                      </div>
+                    </div>
+                    {cert.link && (
+                      <div className="absolute top-6 right-6">
+                        <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors duration-300" />
+                      </div>
+                    )}
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-                      {cert.name}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 font-medium">
-                      {cert.issuer}
-                    </p>
-                  </div>
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-4 h-4 text-gray-500" />
-                  <span className="text-gray-600 dark:text-gray-400 text-sm">
-                    Issued: {cert.date}
-                  </span>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-4 h-4 text-gray-500" />
+                      <span className="text-gray-600 dark:text-gray-400 text-sm">
+                        Issued: {cert.date}
+                      </span>
+                    </div>
+                    
+                    <div className="text-sm text-gray-500 dark:text-gray-500">
+                      Credential ID: {cert.credentialId}
+                    </div>
+                    
+                    <div className="flex items-center justify-between pt-2">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                        {cert.status}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="text-sm text-gray-500 dark:text-gray-500">
-                  Credential ID: {cert.credentialId}
-                </div>
-                
-                <div className="flex items-center justify-between pt-2">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
-                    {cert.status}
-                  </span>
-                </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
 
         <div className="mt-12 text-center">
           <p className="text-gray-600 dark:text-gray-400">
-            Continuously pursuing additional certifications to stay current with industry standards and emerging technologies.
+            Continuously pursuing additional certifications to stay updated with emerging technologies.
           </p>
         </div>
       </div>

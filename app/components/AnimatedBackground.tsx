@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function FlyingBirdsBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -8,6 +9,20 @@ export default function FlyingBirdsBackground() {
   const birdsRef = useRef<Bird[]>([]);
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isLight = mounted && resolvedTheme === 'light';
+  const isLightRef = useRef(isLight);
+
+  useEffect(() => {
+    isLightRef.current = isLight;
+  }, [isLight]);
 
   interface Bird {
     x: number;
@@ -17,7 +32,7 @@ export default function FlyingBirdsBackground() {
     size: number;
     wingPhase: number;
     wingSpeed: number;
-    color: string;
+    colorIndex: number;
     opacity: number;
     avoidanceRadius: number;
     flockRadius: number;
@@ -29,15 +44,6 @@ export default function FlyingBirdsBackground() {
     scared: boolean;
     scaredTimer: number;
   }
-
-  const birdColors = [
-    '30, 41, 59',      // Slate
-    '51, 65, 85',      // Slate 600
-    '71, 85, 105',     // Slate 500
-    '100, 116, 139',   // Slate 400
-    '148, 163, 184',   // Slate 300
-    '203, 213, 225',   // Slate 200
-  ];
 
   const createBird = (width: number, height: number): Bird => {
     const x = Math.random() * width;
@@ -53,7 +59,7 @@ export default function FlyingBirdsBackground() {
       size: Math.random() * 8 + 4,
       wingPhase: Math.random() * Math.PI * 2,
       wingSpeed: Math.random() * 0.3 + 0.2,
-      color: birdColors[Math.floor(Math.random() * birdColors.length)],
+      colorIndex: Math.floor(Math.random() * 6),
       opacity: Math.random() * 0.6 + 0.4,
       avoidanceRadius: Math.random() * 80 + 100,
       flockRadius: Math.random() * 50 + 80,
@@ -72,9 +78,34 @@ export default function FlyingBirdsBackground() {
     ctx.translate(bird.x, bird.y);
     ctx.rotate(bird.angle);
 
+    const isLightMode = isLightRef.current;
+    
+    // In dark mode, birds should be light/bright so they stand out
+    const darkPalette = [
+      '100, 116, 139',
+      '148, 163, 184',
+      '203, 213, 225',
+      '241, 245, 249',
+      '248, 250, 252',
+      '255, 255, 255'
+    ];
+    
+    // In light mode, birds should be darker so they stand out
+    const lightPalette = [
+      '15, 23, 42',
+      '30, 41, 59',
+      '51, 65, 85',
+      '71, 85, 105',
+      '100, 116, 139',
+      '148, 163, 184'
+    ];
+    
+    const palette = isLightMode ? lightPalette : darkPalette;
+    const colorStr = palette[bird.colorIndex % palette.length];
+
     // Draw trail
     if (bird.trail.length > 1) {
-      ctx.strokeStyle = `rgba(${bird.color}, 0.1)`;
+      ctx.strokeStyle = `rgba(${colorStr}, 0.1)`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(bird.trail[0].x - bird.x, bird.trail[0].y - bird.y);
@@ -90,13 +121,13 @@ export default function FlyingBirdsBackground() {
     const scaredMultiplier = bird.scared ? 2 : 1;
     
     // Bird body
-    ctx.fillStyle = `rgba(${bird.color}, ${bird.opacity})`;
+    ctx.fillStyle = `rgba(${colorStr}, ${bird.opacity})`;
     ctx.beginPath();
     ctx.ellipse(0, 0, bird.size * 0.8, bird.size * 0.4, 0, 0, Math.PI * 2);
     ctx.fill();
 
     // Bird wings
-    ctx.fillStyle = `rgba(${bird.color}, ${bird.opacity * 0.8})`;
+    ctx.fillStyle = `rgba(${colorStr}, ${bird.opacity * 0.8})`;
     
     // Left wing
     ctx.beginPath();
@@ -125,13 +156,13 @@ export default function FlyingBirdsBackground() {
     ctx.fill();
 
     // Bird head
-    ctx.fillStyle = `rgba(${bird.color}, ${bird.opacity})`;
+    ctx.fillStyle = `rgba(${colorStr}, ${bird.opacity})`;
     ctx.beginPath();
     ctx.ellipse(bird.size * 0.5, 0, bird.size * 0.3, bird.size * 0.3, 0, 0, Math.PI * 2);
     ctx.fill();
 
     // Beak
-    ctx.fillStyle = `rgba(${bird.color}, ${bird.opacity * 0.6})`;
+    ctx.fillStyle = `rgba(${colorStr}, ${bird.opacity * 0.6})`;
     ctx.beginPath();
     ctx.ellipse(bird.size * 0.8, 0, bird.size * 0.15, bird.size * 0.1, 0, 0, Math.PI * 2);
     ctx.fill();
@@ -397,8 +428,9 @@ export default function FlyingBirdsBackground() {
     birdsRef.current = Array.from({ length: 25 }, () => createBird(dimensions.width, dimensions.height));
 
     const animate = (time: number) => {
-      // Clear canvas with slight fade for trail effect
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
+      // Clear canvas with slight fade for trail effect using correct theme color
+      const isLightMode = isLightRef.current;
+      ctx.fillStyle = isLightMode ? 'rgba(248, 250, 252, 0.2)' : 'rgba(15, 23, 42, 0.1)';
       ctx.fillRect(0, 0, dimensions.width, dimensions.height);
 
       // Update birds
@@ -410,13 +442,15 @@ export default function FlyingBirdsBackground() {
       });
 
       // Draw mouse cursor influence area (debug - remove in production)
+      /*
       if (mouseRef.current.isActive) {
-        ctx.strokeStyle = 'rgba(99, 102, 241, 0.1)';
+        ctx.strokeStyle = isLightMode ? 'rgba(99, 102, 241, 0.2)' : 'rgba(99, 102, 241, 0.1)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(mouseRef.current.x, mouseRef.current.y, 100, 0, Math.PI * 2);
         ctx.stroke();
       }
+      */
 
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -430,37 +464,65 @@ export default function FlyingBirdsBackground() {
     };
   }, [dimensions]);
 
+  if (!mounted) {
+    return (
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -1 }}>
+        <div className="absolute inset-0 bg-slate-900" />
+      </div>
+    );
+  }
+
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -1 }}>
+    <div className="fixed inset-0 overflow-hidden pointer-events-none transition-colors duration-500" style={{ zIndex: -1 }}>
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full transition-colors duration-500"
         style={{ 
-          background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+          background: isLight 
+            ? 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)'
+            : 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
         }}
       />
       
       {/* Sky gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-transparent to-slate-800/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-blue-900/20" />
+      <div className={`absolute inset-0 transition-colors duration-500 ${
+        isLight
+          ? 'bg-gradient-to-b from-blue-100/40 via-transparent to-slate-200/50'
+          : 'bg-gradient-to-b from-blue-900/20 via-transparent to-slate-800/30'
+      }`} />
+      <div className={`absolute inset-0 transition-colors duration-500 ${
+        isLight
+          ? 'bg-gradient-to-t from-slate-200/60 via-transparent to-blue-100/40'
+          : 'bg-gradient-to-t from-slate-900/40 via-transparent to-blue-900/20'
+      }`} />
       
       {/* Subtle cloud-like patterns */}
       <div 
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 transition-opacity duration-500"
         style={{
-          background: `
-            radial-gradient(ellipse 800px 200px at 20% 20%, rgba(148, 163, 184, 0.1) 0%, transparent 50%),
-            radial-gradient(ellipse 600px 150px at 80% 40%, rgba(203, 213, 225, 0.08) 0%, transparent 50%),
-            radial-gradient(ellipse 400px 100px at 40% 80%, rgba(148, 163, 184, 0.06) 0%, transparent 50%)
-          `,
+          opacity: isLight ? 0.4 : 0.1,
+          background: isLight
+            ? `
+              radial-gradient(ellipse 800px 200px at 20% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
+              radial-gradient(ellipse 600px 150px at 80% 40%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+              radial-gradient(ellipse 400px 100px at 40% 80%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)
+            `
+            : `
+              radial-gradient(ellipse 800px 200px at 20% 20%, rgba(148, 163, 184, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse 600px 150px at 80% 40%, rgba(203, 213, 225, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse 400px 100px at 40% 80%, rgba(148, 163, 184, 0.06) 0%, transparent 50%)
+            `
         }}
       />
       
       {/* Atmospheric perspective */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 transition-opacity duration-500"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.3) 100%)',
+          opacity: isLight ? 0.2 : 0.3,
+          background: isLight 
+            ? 'radial-gradient(ellipse at center, transparent 0%, rgba(148, 163, 184, 0.3) 100%)'
+            : 'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.3) 100%)',
         }}
       />
     </div>

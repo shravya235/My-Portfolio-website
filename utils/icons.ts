@@ -1,14 +1,24 @@
 // utils/icons.ts
 import {
   Shield, Lock, Eye, Server, Code, Database,
-  Network, Bug, FileSearch, AlertTriangle, Key, Zap, GraduationCap, Award, Calendar, 
+  Network, Bug, FileSearch, AlertTriangle, Key, Zap, GraduationCap, Award, Calendar,
   ExternalLink, Github,
   ShoppingCart,
   MessageCircle,
   Brain,
+  Trophy,
+  Medal,
+  Leaf,
+  Venus,
+  ShieldCheck,
+  Stethoscope
 } from 'lucide-react';
 
 export const iconMap = {
+  Stethoscope,
+  ShieldCheck,
+  Venus,
+  Leaf,
   Shield,
   Lock,
   Eye,
@@ -23,7 +33,10 @@ export const iconMap = {
   Zap,
   ShoppingCart,
   MessageCircle,
-  Brain
+  Brain,
+  Trophy,
+  Medal,
+  GraduationCap
 };
 
 export const lucideIcons = {
@@ -33,10 +46,10 @@ export const lucideIcons = {
 };
 
 export const projectIcons = {
-  ExternalLink, 
-  Github, 
-  Shield, 
-  Lock, 
+  ExternalLink,
+  Github,
+  Shield,
+  Lock,
   Eye
 };
 

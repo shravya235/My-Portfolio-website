@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { education } from '../data/portfolioData';
 import { lucideIcons } from '@/utils/icons';
+import { MotionCard } from './MotionCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,7 +101,7 @@ export default function Education() {
                   <div className={`w-full md:w-5/12 ${
                     isLeft ? 'md:mr-auto md:pr-20' : 'md:ml-auto md:pl-20'
                   }`}>
-                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <MotionCard className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-all duration-300">
                       <div className="flex items-center space-x-3 mb-4">
                         {Icon && <Icon className="w-6 h-6 text-blue-500" />}
                         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
@@ -127,7 +128,7 @@ export default function Education() {
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                         {edu.description}
                       </p>
-                    </div>
+                    </MotionCard>
                   </div>
                 </div>
               );

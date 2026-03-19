@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Briefcase, Calendar } from 'lucide-react';
 import { experiences } from '../data/portfolioData';
+import { MotionCard } from './MotionCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,7 +79,7 @@ export default function Experience() {
                 <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900 z-10" />
 
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'} ml-16 md:ml-0`}>
-                  <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <MotionCard className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-shadow duration-300">
                     <div className="flex items-center space-x-3 mb-4">
                       <Briefcase className="w-6 h-6 text-blue-500" />
                       <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
@@ -105,7 +106,7 @@ export default function Experience() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </MotionCard>
                 </div>
               </div>
             ))}

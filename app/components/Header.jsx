@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Moon, Sun, Menu, X, Code, Zap, Sparkles, ChevronDown } from 'lucide-react';
+import { Moon, Sun, Menu, X, Code, Zap, Sparkles, ChevronDown, Trophy } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function AdvancedHeader() {
   const [mounted, setMounted] = useState(false);
@@ -25,7 +26,7 @@ export default function AdvancedHeader() {
           setScrolled(scrollTop > 50);
           
           // Update active section based on scroll position
-          const sections = ['about', 'skills', 'experience', 'education', 'projects', 'certifications', 'contact'];
+          const sections = ['about', 'skills', 'experience', 'education', 'projects', 'achievements', 'certifications', 'contact'];
           const currentSection = sections.find(section => {
             const element = document.getElementById(section);
             if (element) {
@@ -69,19 +70,7 @@ export default function AdvancedHeader() {
     };
   }, []);
 
-  // Animate logo on hover
-  const handleLogoHover = () => {
-    if (logoRef.current) {
-      logoRef.current.style.transform = 'scale(1.1) rotate(5deg)';
-      logoRef.current.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-    }
-  };
 
-  const handleLogoLeave = () => {
-    if (logoRef.current) {
-      logoRef.current.style.transform = 'scale(1) rotate(0deg)';
-    }
-  };
 
   if (!mounted) return null;
 
@@ -91,6 +80,7 @@ export default function AdvancedHeader() {
     { name: 'Experience', href: '#experience', icon: <Zap className="w-4 h-4" /> },
     { name: 'Education', href: '#education', icon: <ChevronDown className="w-4 h-4" /> },
     { name: 'Projects', href: '#projects', icon: <Code className="w-4 h-4" /> },
+    { name: 'Achievements', href: '#achievements', icon: <Trophy className="w-4 h-4" /> },
     { name: 'Certifications', href: '#certifications', icon: <Sparkles className="w-4 h-4" /> },
     { name: 'Contact', href: '#contact', icon: <Zap className="w-4 h-4" /> },
   ];
@@ -144,22 +134,13 @@ export default function AdvancedHeader() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             
-            {/* Enhanced Logo */}
-            <div 
-              className="relative group cursor-pointer"
-              onMouseEnter={() => {
-                handleLogoHover();
-                setHoveredItem('logo');
-              }}
-              onMouseLeave={() => {
-                handleLogoLeave();
-                setHoveredItem(null);
-              }}
+            {/* Simple Clean Logo */}
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="relative cursor-pointer focus:outline-none flex-shrink-0"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl"></div>
               <h1 
-                ref={logoRef}
-                className="relative text-3xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                className="relative text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent whitespace-nowrap"
                 style={{ 
                   backgroundSize: '200% 200%',
                   animation: 'gradientShift 3s ease-in-out infinite'
@@ -167,8 +148,7 @@ export default function AdvancedHeader() {
               >
                 Shravya R
               </h1>
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></div>
-            </div>
+            </button>
 
             {/* Enhanced Desktop Navigation */}
             <nav className="hidden md:flex space-x-1">
@@ -212,22 +192,8 @@ export default function AdvancedHeader() {
             {/* Enhanced Controls */}
             <div className="flex items-center space-x-3">
               {/* Theme Toggle */}
-              {/* <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="relative p-3 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-300 group overflow-hidden"
-                onMouseEnter={() => setHoveredItem('theme')}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 dark:from-blue-400 dark:to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                
-                <div className="relative transition-transform duration-300 group-hover:scale-110">
-                  {theme === 'dark' ? (
-                    <Sun className="w-5 h-5 text-yellow-500" />
-                  ) : (
-                    <Moon className="w-5 h-5 text-blue-500" />
-                  )}
-                </div>
-              </button> */}
+              {/* Theme Toggle */}
+              <ThemeToggle />
 
               {/* Mobile Menu Button */}
               <button

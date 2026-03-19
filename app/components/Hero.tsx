@@ -51,7 +51,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden text-white">
+    <section ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden text-gray-900 dark:text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between space-y-10 lg:space-y-0">
           {/* Left - Text Content */}
@@ -63,11 +63,11 @@ export default function Hero() {
                 </span>
               </h1>
 
-              <h2 className="hero-subtitle text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300">
+              <h2 className="hero-subtitle text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-700 dark:text-gray-300">
                 Cybersecurity Enthusiast
               </h2>
 
-              <p className="hero-description text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="hero-description text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Passionate about securing digital landscapes and exploring the ever-evolving world of cybersecurity.
                 Building robust solutions and staying ahead of emerging threats.
               </p>
@@ -78,20 +78,20 @@ export default function Hero() {
                 href="https://github.com/shravya235"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center space-x-2 px-6 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                className="group flex items-center space-x-2 px-6 py-3 bg-white/50 dark:bg-white/10 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 transition-all duration-300 hover:scale-105"
               >
                 <Github className="w-5 h-5 group-hover:text-blue-500 transition-colors duration-200" />
-                <span className="font-medium">GitHub</span>
+                <span className="font-medium text-gray-800 dark:text-white">GitHub</span>
               </a>
 
               <a
                 href="https://www.linkedin.com/in/shravya-r-32913028b/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center space-x-2 px-6 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                className="group flex items-center space-x-2 px-6 py-3 bg-white/50 dark:bg-white/10 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 transition-all duration-300 hover:scale-105"
               >
                 <Linkedin className="w-5 h-5 group-hover:text-blue-500 transition-colors duration-200" />
-                <span className="font-medium">LinkedIn</span>
+                <span className="font-medium text-gray-800 dark:text-white">LinkedIn</span>
               </a>
             </div>
           </div>
@@ -110,18 +110,18 @@ export default function Hero() {
       initial={{ scale: 1.2, opacity: 0 }}
       animate={{ scale: 1, opacity: 0.12 }}
       transition={{ duration: 1.2, ease: 'easeOut' }}
-      className="absolute inset-0 rounded-full bg-white blur-[60px] z-0"
+      className="absolute inset-0 rounded-full bg-blue-500 dark:bg-white blur-[60px] z-0"
     />
 
     {/* White Ring Border */}
-    <div className="absolute inset-0 rounded-full border-[6px] border-white/30 z-10" />
+    <div className="absolute inset-0 rounded-full border-[6px] border-blue-500/30 dark:border-white/30 z-10" />
 
     {/* Left Bracket */}
     <motion.div
       initial={{ x: -20, opacity: 0 }}
       animate={{ x: 0, opacity: 0.2 }}
       transition={{ delay: 0.8, duration: 1 }}
-      className="absolute -left-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-white z-0"
+      className="absolute -left-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-gray-500 dark:text-white z-0"
     >
       &lt;
     </motion.div>
@@ -131,7 +131,7 @@ export default function Hero() {
       initial={{ x: 20, opacity: 0 }}
       animate={{ x: 0, opacity: 0.2 }}
       transition={{ delay: 0.8, duration: 1 }}
-      className="absolute -right-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-white z-0"
+      className="absolute -right-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-gray-500 dark:text-white z-0"
     >
       &gt;
     </motion.div>

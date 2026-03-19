@@ -12,6 +12,7 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Projects from './components/Projects';
+import Achievements from './components/Achievements';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -22,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     // Smooth scrolling
     gsap.registerPlugin(ScrollTrigger);
-    
+
     // Update scroll trigger on resize
     window.addEventListener('resize', () => {
       ScrollTrigger.refresh();
@@ -46,6 +47,7 @@ export default function Home() {
       <Experience />
       <Education />
       <Projects />
+      <Achievements />
       <Certifications />
       <Contact />
       <Footer />
