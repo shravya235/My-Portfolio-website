@@ -91,7 +91,7 @@ export default function Contact() {
                 icon={<Github className="w-6 h-6" />}
               />
               <SocialLink
-                href="https://www.linkedin.com/in/shravya-r-32913028b/"
+                href="https://www.linkedin.com/in/shravyar11/"
                 icon={<Linkedin className="w-6 h-6 text-blue-500" />}
               />
             </div>

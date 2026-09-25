@@ -107,10 +107,6 @@ export default function Certifications() {
                       </span>
                     </div>
                     
-                    <div className="text-sm text-gray-500 dark:text-gray-500">
-                      Credential ID: {cert.credentialId}
-                    </div>
-                    
                     <div className="flex items-center justify-between pt-2">
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
                         {cert.status}

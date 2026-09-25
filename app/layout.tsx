@@ -11,8 +11,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Shravya R - Cybersecurity Enthusiast',
-  description: 'Portfolio of Shravya R - Cybersecurity Enthusiast and Developer',
+  title: 'Shravya R - Software Developer',
+  description: 'Portfolio of Shravya R - Software Developer & Cybersecurity Enthusiast',
 };
 
 export default function RootLayout({

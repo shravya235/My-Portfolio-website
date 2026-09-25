@@ -63,13 +63,15 @@ export default function Hero() {
                 </span>
               </h1>
 
-              <h2 className="hero-subtitle text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-700 dark:text-gray-300">
-                Cybersecurity Enthusiast
+              <h2 className="hero-subtitle flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-700 dark:text-gray-300">
+                <span className="whitespace-nowrap">Software Developer</span>
+                <span className="hidden sm:inline text-gray-400 dark:text-gray-600">|</span>
+                <span className="whitespace-nowrap">Cybersecurity Enthusiast</span>
               </h2>
 
               <p className="hero-description text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Passionate about securing digital landscapes and exploring the ever-evolving world of cybersecurity.
-                Building robust solutions and staying ahead of emerging threats.
+                Passionate about building practical software solutions and exploring cybersecurity, cloud technologies, and emerging technologies.
+                I enjoy solving problems, learning how systems work, and turning ideas into real-world applications.
               </p>
             </div>
 

@@ -11,7 +11,18 @@ import {
   Leaf,
   Venus,
   ShieldCheck,
-  Stethoscope
+  Stethoscope,
+  Search,
+  Terminal,
+  HardDrive,
+  Code2,
+  Atom,
+  Layout,
+  Container,
+  Cloud,
+  GitBranch,
+  LockKeyhole,
+  Triangle
 } from 'lucide-react';
 
 export const iconMap = {
@@ -36,7 +47,19 @@ export const iconMap = {
   Brain,
   Trophy,
   Medal,
-  GraduationCap
+  GraduationCap,
+  Search,
+  Terminal,
+  HardDrive,
+  Code2,
+  Atom,
+  Layout,
+  Container,
+  Cloud,
+  GitBranch,
+  LockKeyhole,
+  Github,
+  Triangle
 };
 
 export const lucideIcons = {

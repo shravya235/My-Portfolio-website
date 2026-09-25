@@ -61,7 +61,7 @@ export default function Skills() {
 
         {/* Cybersecurity Skills */}
         <div className="mb-20">
-          <h3 className="text-2xl font-semibold text-center mb-12 text-gray-800 dark:text-gray-100">Cybersecurity Expertise</h3>
+          <h3 className="text-2xl font-semibold text-center mb-12 text-gray-800 dark:text-gray-100">Cybersecurity Skills</h3>
           <div className="skills-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 justify-items-center">
             {skillsData.cybersecuritySkills.map((skill, index) => {
               const Icon = iconMap[skill.icon];
@@ -91,36 +91,41 @@ export default function Skills() {
 
         {/* Technical Skills */}
         <div>
-          <h3 className="text-2xl font-semibold text-center mb-12 text-gray-800 dark:text-gray-100">Technical Proficiencies</h3>
+          <h3 className="text-2xl font-semibold text-center mb-12 text-gray-800 dark:text-gray-100">Technical Skills</h3>
           <div className="tech-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 justify-items-center">
-            {skillsData.technicalSkills.map((skill, index) => (
-              <div key={skill.name} className="tech-orb group flex flex-col items-center">
-                <div className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-bounce"
-                  style={{
-                    top: `${Math.random() * 15 - 7}px`,
-                    right: `${Math.random() * 15 - 7}px`,
-                    animationDelay: `${index * 0.15}s`
-                  }} />
-                <div className="relative w-20 h-20 mb-4 rounded-full">
-                  <div className={`absolute inset-0 rounded-full ${skill.bgColor} blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-300`} />
-                  <div className="relative w-full h-full bg-gray-800/60 dark:bg-gray-700/60 backdrop-blur-xl rounded-full border border-gray-600/30 dark:border-gray-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-gray-700/70 dark:group-hover:bg-gray-600/70 transition-all duration-300 shadow-2xl">
-                    {skill.icon.length <= 3 ? (
-                      <span className="text-xl sm:text-2xl font-bold text-gray-300 dark:text-gray-200 group-hover:text-white transition-colors duration-300 flex items-center justify-center w-8 h-8">
-                        {skill.icon}
-                      </span>
-                    ) : (
-                      <span className="text-[32px] leading-none group-hover:scale-110 transition-transform duration-300 flex items-center justify-center w-8 h-8">
-                        {skill.icon}
-                      </span>
-                    )}
+            {skillsData.technicalSkills.map((skill, index) => {
+              const Icon = iconMap[skill.icon as keyof typeof iconMap];
+              return (
+                <div key={skill.name} className="tech-orb group flex flex-col items-center">
+                  <div className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-bounce"
+                    style={{
+                      top: `${Math.random() * 15 - 7}px`,
+                      right: `${Math.random() * 15 - 7}px`,
+                      animationDelay: `${index * 0.15}s`
+                    }} />
+                  <div className="relative w-20 h-20 mb-4 rounded-full">
+                    <div className={`absolute inset-0 rounded-full ${skill.bgColor} blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-300`} />
+                    <div className="relative w-full h-full bg-gray-800/60 dark:bg-gray-700/60 backdrop-blur-xl rounded-full border border-gray-600/30 dark:border-gray-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-gray-700/70 dark:group-hover:bg-gray-600/70 transition-all duration-300 shadow-2xl">
+                      {Icon ? (
+                        <Icon className="w-8 h-8 text-gray-300 dark:text-gray-200 group-hover:text-white transition-colors duration-300" />
+                      ) : skill.icon.length <= 3 ? (
+                        <span className="text-xl sm:text-2xl font-bold text-gray-300 dark:text-gray-200 group-hover:text-white transition-colors duration-300 flex items-center justify-center w-8 h-8">
+                          {skill.icon}
+                        </span>
+                      ) : (
+                        <span className="text-[32px] leading-none group-hover:scale-110 transition-transform duration-300 flex items-center justify-center w-8 h-8">
+                          {skill.icon}
+                        </span>
+                      )}
+                    </div>
+                    <div className="absolute top-2 left-2 w-4 h-4 bg-white/20 rounded-full blur-sm" />
                   </div>
-                  <div className="absolute top-2 left-2 w-4 h-4 bg-white/20 rounded-full blur-sm" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center max-w-20 leading-tight group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
+                    {skill.name}
+                  </span>
                 </div>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center max-w-20 leading-tight group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
-                  {skill.name}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

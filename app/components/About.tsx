@@ -65,9 +65,6 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
-                  Cybersecurity Professional
-                </h3>
                 {aboutData.description.map((paragraph, index) => (
                   <p key={index} className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                     {paragraph}
