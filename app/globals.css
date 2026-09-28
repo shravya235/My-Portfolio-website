@@ -2,73 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+/* ------------------------------------------------------------------
+   Design system tokens
+   Light values live on :root, dark values on .dark (next-themes class).
+   Colors are stored as space-separated RGB so Tailwind can apply alpha.
+------------------------------------------------------------------- */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* shadcn/ui tokens */
+    --background: 270 60% 97%;
+    --foreground: 262 45% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 262 45% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --popover-foreground: 262 45% 10%;
+    --primary: 271 81% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 270 40% 93%;
+    --secondary-foreground: 262 45% 12%;
+    --muted: 270 40% 93%;
+    --muted-foreground: 262 15% 40%;
+    --accent: 270 40% 93%;
+    --accent-foreground: 262 45% 12%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --border: 268 40% 86%;
+    --input: 268 40% 86%;
+    --ring: 271 81% 56%;
+    --chart-1: 271 81% 56%;
+    --chart-2: 322 81% 60%;
+    --chart-3: 188 86% 45%;
+    --chart-4: 250 80% 65%;
+    --chart-5: 290 70% 60%;
+    --radius: 1rem;
+
+    /* Portfolio palette */
+    --ink: 22 12 44;             /* headings */
+    --ink-soft: 58 44 86;        /* body copy */
+    --ink-muted: 110 96 140;     /* tertiary text */
+    --glow-violet: 124 58 237;
+    --glow-pink: 219 39 160;
+    --glow-cyan: 8 145 178;
+    --glow-lavender: 139 92 246;
+
+    /* Background */
+    --bg-base: #f4eefe;
+    --bg-layers:
+      radial-gradient(55% 65% at 0% 30%, rgba(139, 92, 246, 0.42) 0%, rgba(139, 92, 246, 0.16) 45%, transparent 75%),
+      radial-gradient(40% 50% at 15% 0%, rgba(99, 102, 241, 0.28) 0%, transparent 70%),
+      radial-gradient(40% 50% at 100% 100%, rgba(244, 170, 230, 0.6) 0%, rgba(236, 180, 245, 0.25) 45%, transparent 75%),
+      radial-gradient(40% 45% at 100% 10%, rgba(196, 181, 253, 0.4) 0%, transparent 70%),
+      radial-gradient(45% 55% at 60% 65%, rgba(216, 180, 254, 0.28) 0%, transparent 70%);
+    --blob-a: rgba(167, 139, 250, 0.35);
+    --blob-b: rgba(249, 168, 212, 0.35);
+    --grain-opacity: 0.07;
+
+    /* Glass */
+    --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.72) 0%, rgba(250, 245, 255, 0.45) 100%);
+    --glass-border: rgba(139, 92, 246, 0.18);
+    --glass-border-hover: rgba(139, 92, 246, 0.4);
+    --glass-highlight: rgba(255, 255, 255, 0.9);
+    --glass-shadow: 0 24px 60px -28px rgba(76, 29, 149, 0.35);
+    --glass-glow: 0 0 44px -12px rgba(168, 85, 247, 0.4);
+    --nav-bg: linear-gradient(120deg, rgba(255, 255, 255, 0.7) 0%, rgba(245, 238, 255, 0.55) 100%);
+    --nav-shadow: 0 18px 50px -26px rgba(76, 29, 149, 0.35);
+    --nav-bg-scrolled: linear-gradient(120deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 238, 255, 0.75) 100%);
+    --chip-bg: rgba(255, 255, 255, 0.55);
+    --chip-border: rgba(124, 58, 237, 0.2);
+    --btn-bg: rgba(255, 255, 255, 0.55);
+    --btn-border: rgba(76, 29, 149, 0.22);
   }
+
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 265 70% 3%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
+    --card: 265 50% 8%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
+    --popover: 265 50% 8%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
+    --primary: 270 95% 75%;
+    --primary-foreground: 265 70% 6%;
+    --secondary: 265 35% 14%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
+    --muted: 265 35% 14%;
+    --muted-foreground: 265 20% 72%;
+    --accent: 265 35% 14%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 0 0% 100% / 0.14;
+    --input: 0 0% 100% / 0.14;
+    --ring: 270 95% 75%;
+
+    --ink: 255 255 255;
+    --ink-soft: 236 230 250;
+    --ink-muted: 190 178 220;
+    --glow-violet: 167 139 250;
+    --glow-pink: 240 110 220;
+    --glow-cyan: 34 211 238;
+    --glow-lavender: 216 180 254;
+
+    --bg-base: #06020e;
+    --bg-layers:
+      radial-gradient(60% 75% at 0% 35%, rgba(124, 58, 237, 0.95) 0%, rgba(109, 40, 217, 0.55) 35%, transparent 72%),
+      radial-gradient(42% 55% at 14% 0%, rgba(91, 55, 255, 0.75) 0%, transparent 70%),
+      radial-gradient(40% 55% at 16% 100%, rgba(139, 92, 246, 0.55) 0%, transparent 72%),
+      radial-gradient(38% 48% at 100% 100%, rgba(243, 208, 250, 0.62) 0%, rgba(210, 150, 235, 0.3) 40%, transparent 75%),
+      radial-gradient(35% 45% at 100% 12%, rgba(196, 170, 225, 0.32) 0%, transparent 70%),
+      radial-gradient(45% 55% at 72% 72%, rgba(126, 34, 206, 0.38) 0%, transparent 72%);
+    --blob-a: rgba(124, 58, 237, 0.45);
+    --blob-b: rgba(217, 70, 239, 0.28);
+    --grain-opacity: 0.11;
+
+    --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(120, 60, 200, 0.07) 55%, rgba(255, 255, 255, 0.03) 100%);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-border-hover: rgba(216, 180, 254, 0.42);
+    --glass-highlight: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 28px 60px -28px rgba(5, 0, 20, 0.85);
+    --glass-glow: 0 0 48px -10px rgba(168, 85, 247, 0.45);
+    --nav-bg: linear-gradient(120deg, rgba(120, 70, 220, 0.16) 0%, rgba(12, 6, 26, 0.45) 55%, rgba(12, 6, 26, 0.55) 100%);
+    --nav-shadow: 0 18px 50px -24px rgba(10, 0, 40, 0.7);
+    --nav-bg-scrolled: linear-gradient(120deg, rgba(90, 50, 180, 0.28) 0%, rgba(12, 6, 26, 0.68) 55%, rgba(12, 6, 26, 0.74) 100%);
+    --chip-bg: rgba(255, 255, 255, 0.06);
+    --chip-border: rgba(255, 255, 255, 0.2);
+    --btn-bg: rgba(10, 5, 22, 0.35);
+    --btn-border: rgba(255, 255, 255, 0.22);
   }
 }
 
@@ -76,7 +134,237 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground antialiased;
+    background-color: var(--bg-base);
+  }
+
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  ::selection {
+    background: rgba(192, 132, 252, 0.35);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reusable components
+------------------------------------------------------------------- */
+@layer components {
+  /* Global background: fixed, so every section and page shares it */
+  .site-backdrop {
+    @apply pointer-events-none fixed inset-0 overflow-hidden;
+    z-index: -10;
+    background: var(--bg-layers), var(--bg-base);
+    transition: background 0.6s ease;
+  }
+
+  .site-backdrop__blob {
+    @apply absolute rounded-full;
+    filter: blur(90px);
+    will-change: transform;
+  }
+
+  .site-backdrop__blob--a {
+    width: 55vmax;
+    height: 55vmax;
+    left: -18vmax;
+    top: 10vh;
+    background: var(--blob-a);
+    animation: backdrop-drift-a 28s ease-in-out infinite alternate;
+  }
+
+  .site-backdrop__blob--b {
+    width: 45vmax;
+    height: 45vmax;
+    right: -15vmax;
+    bottom: -12vmax;
+    background: var(--blob-b);
+    animation: backdrop-drift-b 34s ease-in-out infinite alternate;
+  }
+
+  .site-backdrop__grain {
+    @apply absolute;
+    inset: -50%;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+  }
+
+  /* Headings */
+  .section-title {
+    @apply text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1];
+    letter-spacing: -0.025em;
+  }
+
+  .section-subtitle {
+    @apply mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg;
+  }
+
+  /* Glass panels */
+  .glass-card {
+    @apply relative rounded-[1.75rem] border;
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  }
+
+  .glass-card-hover:hover,
+  .group:hover > .glass-card-hover,
+  a:hover > .glass-card-hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--glass-shadow), var(--glass-glow), inset 0 1px 0 var(--glass-highlight);
+  }
+
+  .glass-nav {
+    @apply relative rounded-[1.75rem] border;
+    background: var(--nav-bg);
+    border-color: var(--glass-border);
+    box-shadow: var(--nav-shadow), 0 0 36px -18px rgba(168, 85, 247, 0.45), inset 0 1px 0 var(--glass-highlight);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+    transition: background 0.5s ease;
+  }
+
+  .glass-nav.is-scrolled {
+    background: var(--nav-bg-scrolled);
+  }
+
+  /* Circular icon holder */
+  .icon-ring {
+    @apply relative flex shrink-0 items-center justify-center rounded-full border;
+    background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03) 70%);
+    border-color: var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 10px 24px -12px rgba(10, 0, 40, 0.6);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  }
+
+  .group:hover .icon-ring {
+    border-color: var(--glass-border-hover);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 0 28px -6px rgba(192, 132, 252, 0.55);
+  }
+
+  /* Pills / tags */
+  .chip {
+    @apply inline-flex items-center rounded-full border px-3.5 py-1 text-sm font-medium text-ink-soft;
+    background: var(--chip-bg);
+    border-color: var(--chip-border);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 6px 16px -10px rgba(10, 0, 40, 0.6);
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .chip:hover {
+    border-color: var(--glass-border-hover);
+    @apply text-ink;
+  }
+
+  /* Buttons */
+  .btn-glass {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-2.5 font-semibold text-ink;
+    background: var(--btn-bg);
+    border-color: var(--btn-border);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 24px -14px rgba(10, 0, 40, 0.7);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-glass:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 0 30px -8px rgba(192, 132, 252, 0.6);
+    transform: translateY(-1px);
+  }
+
+  .btn-glass-primary {
+    @apply btn-glass;
+    border-color: rgba(232, 121, 249, 0.45);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 0 28px -10px rgba(217, 70, 239, 0.7);
+  }
+
+  .btn-glass-primary:hover {
+    border-color: rgba(240, 171, 252, 0.75);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 0 36px -6px rgba(217, 70, 239, 0.75);
+  }
+
+  /* Filled call-to-action button */
+  .btn-solid {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 font-semibold text-white;
+    background: linear-gradient(135deg, #8b3fe0 0%, #a855f7 55%, #c264e6 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 10px 30px -8px rgba(168, 85, 247, 0.7);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .btn-solid:hover {
+    filter: brightness(1.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 14px 38px -8px rgba(192, 100, 250, 0.85);
+    transform: translateY(-1px);
+  }
+
+  /* Custom cursor (only enabled on devices with a precise pointer) */
+  .custom-cursor {
+    @apply pointer-events-none fixed left-0 top-0;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    will-change: transform;
+  }
+
+  .custom-cursor.is-visible {
+    opacity: 1;
+  }
+
+  .custom-cursor svg {
+    transform-origin: 3px 3px;
+    transition: transform 0.25s ease, filter 0.25s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+  }
+
+  .custom-cursor.is-hovering svg {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 8px rgba(232, 121, 249, 0.75));
+  }
+
+  /* Gradient text used for the logo */
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #e879f9 0%, #f472b6 55%, #c084fc 100%);
+  }
+
+  /* Timeline rails and nodes */
+  .rail {
+    background: linear-gradient(180deg, rgba(192, 132, 252, 0) 0%, rgba(192, 132, 252, 0.6) 12%, rgba(240, 110, 220, 0.55) 88%, rgba(240, 110, 220, 0) 100%);
+  }
+
+  .rail-dot {
+    @apply rounded-full;
+    background: #f472b6;
+    box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.18), 0 0 16px rgba(244, 114, 182, 0.7);
+  }
+}
+
+@keyframes backdrop-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(6vw, -4vh, 0) scale(1.08); }
+}
+
+@keyframes backdrop-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-5vw, -6vh, 0) scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-backdrop__blob {
+    animation: none;
   }
 }
