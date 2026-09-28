@@ -1,22 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
-import { Moon, Sun, Menu, X, Code, Zap, Sparkles, ChevronDown, Trophy } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { Menu, X, Code, Zap, Sparkles, ChevronDown, Trophy } from 'lucide-react';
 
 export default function AdvancedHeader() {
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [theme, setTheme] = useState('dark');
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [hoveredItem, setHoveredItem] = useState(null);
   const headerRef = useRef(null);
-  const cursorRef = useRef(null);
-  const logoRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
-    
+
     // Enhanced scroll handler with throttling
     let ticking = false;
     const handleScroll = () => {
@@ -24,7 +18,7 @@ export default function AdvancedHeader() {
         requestAnimationFrame(() => {
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
           setScrolled(scrollTop > 50);
-          
+
           // Update active section based on scroll position
           const sections = ['about', 'skills', 'experience', 'education', 'projects', 'achievements', 'certifications', 'contact'];
           const currentSection = sections.find(section => {
@@ -36,16 +30,11 @@ export default function AdvancedHeader() {
             return false;
           });
           if (currentSection) setActiveSection(currentSection);
-          
+
           ticking = false;
         });
         ticking = true;
       }
-    };
-
-    // Mouse tracking for cursor effects
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
     };
 
     // Intersection Observer for section detection
@@ -61,11 +50,9 @@ export default function AdvancedHeader() {
     );
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
       observer.disconnect();
     };
   }, []);
@@ -85,164 +72,115 @@ export default function AdvancedHeader() {
     { name: 'Contact', href: '#contact', icon: <Zap className="w-4 h-4" /> },
   ];
 
+  // On desktop the last item (Contact) is rendered as the outlined call-to-action button
+  const linkItems = navigation.slice(0, -1);
+  const ctaItem = navigation[navigation.length - 1];
+
   return (
     <>
-      {/* Custom cursor */}
-      <div 
-        ref={cursorRef}
-        className="fixed pointer-events-none z-50 mix-blend-difference"
-        style={{
-          left: mousePos.x - 10,
-          top: mousePos.y - 10,
-          transform: hoveredItem ? 'scale(2)' : 'scale(1)',
-          transition: 'transform 0.2s ease-out'
-        }}
-      >
-        <div className="w-5 h-5 bg-white rounded-full opacity-50"></div>
-      </div>
-
-      {/* Floating particles background */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-20"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <header 
+      <header
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          scrolled 
-            ? 'bg-white/10 dark:bg-gray-900/10 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/20 shadow-2xl' 
-            : 'bg-transparent'
-        }`}
-        style={{
-          backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-        }}
+        className="fixed top-0 left-0 right-0 z-40 px-3 pt-3 sm:px-6 sm:pt-5"
       >
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-50"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            
+        <div className={`glass-nav max-w-6xl mx-auto px-4 sm:px-7 ${scrolled ? 'is-scrolled' : ''}`}>
+          <div className="flex justify-between items-center h-16 sm:h-[76px] gap-4">
+
             {/* Simple Clean Logo */}
-            <button 
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="relative cursor-pointer focus:outline-none flex-shrink-0"
             >
-              <h1 
-                className="relative text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent whitespace-nowrap"
-                style={{ 
-                  backgroundSize: '200% 200%',
-                  animation: 'gradientShift 3s ease-in-out infinite'
-                }}
-              >
+              <h1 className="relative text-xl sm:text-2xl font-extrabold tracking-tight text-gradient-brand whitespace-nowrap">
                 Shravya R
               </h1>
             </button>
 
-            {/* Enhanced Desktop Navigation */}
-            <nav className="hidden md:flex space-x-1">
-              {navigation.map((item, index) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 group ${
-                    activeSection === item.name.toLowerCase()
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                  }`}
-                  onMouseEnter={() => setHoveredItem(item.name)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                  style={{
-                    animation: `slideInDown 0.6s ease-out ${index * 0.1}s both`
-                  }}
-                >
-                  {/* Hover background */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  {/* Content */}
-                  <div className="relative flex items-center space-x-2">
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {item.icon}
-                    </span>
-                    <span>{item.name}</span>
-                  </div>
-                  
-                  {/* Active indicator */}
-                  {activeSection === item.name.toLowerCase() && (
-                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full"></div>
-                  )}
-                  
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 border border-transparent group-hover:border-blue-200 dark:group-hover:border-blue-800 rounded-xl transition-colors duration-300"></div>
-                </a>
-              ))}
-            </nav>
+            <div className="flex items-center gap-2 xl:gap-4">
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+                {linkItems.map((item, index) => {
+                  const isActive = activeSection === item.name.toLowerCase();
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`relative px-2.5 xl:px-3.5 py-2 rounded-full text-[14px] xl:text-[15px] font-semibold transition-colors duration-300 ${
+                        isActive ? 'text-ink' : 'text-ink/75 hover:text-ink'
+                      }`}
+                      style={{
+                        animation: `slideInDown 0.6s ease-out ${index * 0.06}s both`
+                      }}
+                    >
+                      {item.name}
 
-            {/* Enhanced Controls */}
-            <div className="flex items-center space-x-3">
-              {/* Theme Toggle */}
-              {/* Theme Toggle */}
-              <ThemeToggle />
+                      {/* Active indicator */}
+                      <span
+                        className={`absolute left-1/2 -bottom-0.5 -translate-x-1/2 w-1 h-1 rounded-full bg-glow-pink shadow-[0_0_8px_rgba(240,110,220,0.9)] transition-opacity duration-300 ${
+                          isActive ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      />
+                    </a>
+                  );
+                })}
+              </nav>
+
+              <a
+                href={ctaItem.href}
+                className={`btn-glass hidden lg:inline-flex text-[14px] xl:text-[15px] px-5 py-2 xl:px-6 xl:py-2.5 ${
+                  activeSection === ctaItem.name.toLowerCase() ? 'border-glow-pink/60' : ''
+                }`}
+                style={{
+                  animation: `slideInDown 0.6s ease-out ${linkItems.length * 0.06}s both`
+                }}
+              >
+                {ctaItem.name}
+              </a>
 
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden relative p-3 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-300 group"
-                onMouseEnter={() => setHoveredItem('menu')}
-                onMouseLeave={() => setHoveredItem(null)}
+                className="icon-ring lg:hidden w-10 h-10"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl"></div>
-                <div className="relative transition-transform duration-300 group-hover:scale-110">
-                  {isMenuOpen ? (
-                    <X className="w-5 h-5 text-red-500" />
-                  ) : (
-                    <Menu className="w-5 h-5 text-blue-500" />
-                  )}
-                </div>
+                {isMenuOpen ? (
+                  <X className="w-5 h-5 text-glow-pink" />
+                ) : (
+                  <Menu className="w-5 h-5 text-ink" />
+                )}
               </button>
             </div>
           </div>
 
-          {/* Enhanced Mobile Navigation */}
-          <div className={`md:hidden overflow-hidden transition-all duration-500 ${
-            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          {/* Mobile Navigation */}
+          <div className={`lg:hidden overflow-hidden transition-all duration-500 ${
+            isMenuOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
           }`}>
-            <div className="py-4 border-t border-gray-200/20 dark:border-gray-700/20">
-              <nav className="flex flex-col space-y-1">
-                {navigation.map((item, index) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`group relative px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
-                      activeSection === item.name.toLowerCase()
-                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                    }`}
-                    style={{
-                      animation: `slideInRight 0.4s ease-out ${index * 0.1}s both`
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative flex items-center space-x-3">
-                      <span className="opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="pt-2 pb-4 border-t border-[color:var(--glass-border)]">
+              <nav className="grid grid-cols-1 sm:grid-cols-2 gap-1 pt-2">
+                {navigation.map((item, index) => {
+                  const isActive = activeSection === item.name.toLowerCase();
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`group relative flex items-center gap-3 px-4 py-3 rounded-2xl font-semibold transition-colors duration-300 ${
+                        isActive
+                          ? 'text-ink bg-glow-violet/10'
+                          : 'text-ink/75 hover:text-ink hover:bg-glow-violet/[0.06]'
+                      }`}
+                      style={{
+                        animation: isMenuOpen ? `slideInRight 0.4s ease-out ${index * 0.05}s both` : 'none'
+                      }}
+                    >
+                      <span className={`transition-colors duration-300 ${isActive ? 'text-glow-pink' : 'text-glow-lavender/70 group-hover:text-glow-pink'}`}>
                         {item.icon}
                       </span>
                       <span>{item.name}</span>
-                    </div>
-                  </a>
-                ))}
+                    </a>
+                  );
+                })}
               </nav>
             </div>
           </div>
@@ -251,14 +189,9 @@ export default function AdvancedHeader() {
 
       {/* Custom CSS Animations */}
       <style jsx>{`
-        @keyframes gradientShift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        
         @keyframes slideInDown {
           from {
-            transform: translateY(-20px);
+            transform: translateY(-8px);
             opacity: 0;
           }
           to {
@@ -266,25 +199,16 @@ export default function AdvancedHeader() {
             opacity: 1;
           }
         }
-        
+
         @keyframes slideInRight {
           from {
-            transform: translateX(-20px);
+            transform: translateX(-12px);
             opacity: 0;
           }
           to {
             transform: translateX(0);
             opacity: 1;
           }
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(180deg); }
-        }
-        
-        .backdrop-blur-xl {
-          backdrop-filter: blur(20px);
         }
       `}</style>
     </>
