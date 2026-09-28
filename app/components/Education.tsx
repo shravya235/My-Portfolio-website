@@ -31,12 +31,12 @@ export default function Education() {
       );
 
       gsap.fromTo('.education-node',
-        { scale: 0, opacity: 0 },
+        { scale: 0.4, opacity: 0 },
         {
           scale: 1,
           opacity: 1,
           duration: 0.6,
-          ease: 'back.out(1.7)',
+          ease: 'power3.out',
           stagger: 0.3,
           scrollTrigger: {
             trigger: '.education-tree',
@@ -68,22 +68,19 @@ export default function Education() {
   }, []);
 
   return (
-    <section id="education" ref={sectionRef} className="py-20 bg-gray-50/50 dark:bg-gray-900/50">
+    <section id="education" ref={sectionRef} className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="education-title text-4xl sm:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Education
-            </span>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="education-title section-title">
+            Education
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
         </div>
 
         <div className="education-tree relative max-w-4xl mx-auto">
           {/* Main trunk */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-green-500 to-blue-500 rounded-full hidden md:block" />
+          <div className="rail absolute left-1/2 -translate-x-1/2 w-0.5 h-full rounded-full hidden md:block" />
 
-          <div className="space-y-16">
+          <div className="space-y-8 md:space-y-16">
             {education.map((edu, index) => {
               const Icon = lucideIcons[edu.icon];
               const isLeft = index % 2 === 0;
@@ -91,41 +88,45 @@ export default function Education() {
               return (
                 <div key={index} className="relative">
                   {/* Branch line */}
-                  <div className={`education-branch absolute top-8 w-16 h-1 bg-gradient-to-r ${
-                    isLeft ? 'from-green-500 to-blue-500 right-1/2' : 'from-blue-500 to-green-500 left-1/2'
+                  <div className={`education-branch absolute top-8 w-16 h-0.5 bg-gradient-to-r ${
+                    isLeft ? 'from-transparent to-glow-lavender/70 right-1/2' : 'from-glow-lavender/70 to-transparent left-1/2'
                   } rounded-full transform-gpu origin-left hidden md:block`} />
 
                   {/* Node */}
-                  <div className="education-node absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-full border-4 border-white dark:border-gray-900 z-10 hidden md:block" />
+                  <div className="education-node rail-dot absolute top-[26px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 z-10 hidden md:block" />
 
                   <div className={`w-full md:w-5/12 ${
                     isLeft ? 'md:mr-auto md:pr-20' : 'md:ml-auto md:pl-20'
                   }`}>
-                    <MotionCard className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-all duration-300">
-                      <div className="flex items-center space-x-3 mb-4">
-                        {Icon && <Icon className="w-6 h-6 text-blue-500" />}
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+                    <MotionCard className="glass-card glass-card-hover p-6 pb-7 sm:p-8">
+                      <div className="flex items-center gap-4 mb-4">
+                        {Icon && (
+                          <div className="icon-ring w-12 h-12">
+                            <Icon className="w-5 h-5 text-glow-cyan" />
+                          </div>
+                        )}
+                        <h3 className="text-lg sm:text-xl font-bold tracking-tight text-ink">
                           {edu.degree}
                         </h3>
                       </div>
-                      
-                      <p className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
+
+                      <p className="text-base sm:text-lg font-semibold text-glow-pink mb-2">
                         {edu.institution}
                       </p>
-                      
-                      <div className="flex items-center justify-between mb-4">
+
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                         <div className="flex items-center space-x-2">
-                          {lucideIcons.Calendar && <lucideIcons.Calendar className="w-4 h-4 text-gray-500" />}
-                          <span className="text-gray-600 dark:text-gray-400 font-medium">
+                          {lucideIcons.Calendar && <lucideIcons.Calendar className="w-4 h-4 text-ink-muted" />}
+                          <span className="text-sm text-ink-muted font-medium">
                             {edu.period}
                           </span>
                         </div>
-                        <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <span className="chip text-glow-cyan text-sm font-semibold">
                           {edu.gpa}
                         </span>
                       </div>
-                      
-                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+
+                      <p className="text-ink-soft leading-relaxed">
                         {edu.description}
                       </p>
                     </MotionCard>

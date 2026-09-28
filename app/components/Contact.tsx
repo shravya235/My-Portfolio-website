@@ -48,51 +48,50 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 relative">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+    <section id="contact" ref={sectionRef} className="py-16 sm:py-24 relative">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="contact-title text-4xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="contact-title section-title">
             Get In Touch
           </h2>
-          <div className="w-16 h-1 mt-4 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full" />
-          <p className="mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="section-subtitle">
             Interested in collaborating or have a question? Let’s connect and make something awesome together.
           </p>
         </div>
 
         {/* Contact Content */}
-        <div className="contact-section flex flex-col gap-10 contact-content text-gray-700 dark:text-gray-300">
+        <div className="contact-section glass-card p-6 sm:p-10 flex flex-col gap-8 sm:gap-10 contact-content text-ink">
           {/* Contact Info List */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-7">
             <ContactItem
-              icon={<Mail className="text-blue-500 w-6 h-6" />}
+              icon={<Mail className="text-glow-lavender w-5 h-5" />}
               title="Email"
               value="shravya11r@gmail.com"
             />
             <ContactItem
-              icon={<Phone className="text-green-500 w-6 h-6" />}
+              icon={<Phone className="text-glow-cyan w-5 h-5" />}
               title="Phone"
               value="+91 7892848220"
             />
             <ContactItem
-              icon={<MapPin className="text-purple-500 w-6 h-6" />}
+              icon={<MapPin className="text-glow-pink w-5 h-5" />}
               title="Location"
               value="Available for Remote Work"
             />
           </div>
 
           {/* Social Icons */}
-          <div className="pt-10 border-t border-gray-300/30 dark:border-gray-700/30">
-            <p className="text-sm mb-4 text-center">Follow me on</p>
-            <div className="flex justify-center space-x-6">
+          <div className="pt-8 sm:pt-10 border-t border-[color:var(--glass-border)]">
+            <p className="text-sm font-medium text-ink-muted mb-4 text-center">Follow me on</p>
+            <div className="flex justify-center gap-4">
               <SocialLink
                 href="https://github.com/shravya235"
-                icon={<Github className="w-6 h-6" />}
+                icon={<Github className="w-5 h-5 text-ink" />}
               />
               <SocialLink
                 href="https://www.linkedin.com/in/shravyar11/"
-                icon={<Linkedin className="w-6 h-6 text-blue-500" />}
+                icon={<Linkedin className="w-5 h-5 text-glow-cyan" />}
               />
             </div>
           </div>
@@ -105,11 +104,11 @@ export default function Contact() {
 // Contact item component
 function ContactItem({ icon, title, value }: { icon: React.ReactNode; title: string; value: string }) {
   return (
-    <div className="flex items-center gap-4">
-      <div className="shrink-0">{icon}</div>
-      <div>
-        <p className="font-semibold text-base">{title}</p>
-        <p className="text-sm text-gray-600 dark:text-gray-400">{value}</p>
+    <div className="group flex items-center gap-4">
+      <div className="icon-ring w-12 h-12">{icon}</div>
+      <div className="min-w-0">
+        <p className="font-bold text-base text-ink">{title}</p>
+        <p className="text-sm sm:text-base text-ink-soft break-words">{value}</p>
       </div>
     </div>
   );
@@ -122,7 +121,7 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="hover:scale-110 transition-transform duration-200"
+      className="group btn-glass w-12 h-12 p-0"
     >
       {icon}
     </a>

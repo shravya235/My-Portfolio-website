@@ -53,18 +53,15 @@ export default function Certifications() {
   }, []);
 
   return (
-    <section id="certifications" ref={sectionRef} className="py-20 bg-gray-50/50 dark:bg-gray-900/50">
+    <section id="certifications" ref={sectionRef} className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="certifications-title text-4xl sm:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Certifications
-            </span>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="certifications-title section-title">
+            Certifications
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
         </div>
 
-        <div className="certifications-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="certifications-grid grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
           {certifications.map((cert, index) => (
             <div
               key={index}
@@ -74,41 +71,42 @@ export default function Certifications() {
                 href={cert.link || "#"} 
                 target={cert.link ? "_blank" : "_self"}
                 rel={cert.link ? "noopener noreferrer" : undefined}
-                className={`block h-full outline-none ${!cert.link ? "cursor-default" : "cursor-pointer"} transform hover:-translate-y-2 transition-all duration-300`}
+                className={`block h-full rounded-[1.75rem] outline-none focus-visible:ring-2 focus-visible:ring-glow-lavender/60 ${!cert.link ? "cursor-default" : "cursor-pointer"} transform hover:-translate-y-1 transition-transform duration-500`}
                 onClick={(e) => !cert.link && e.preventDefault()}
               >
-                <div className="group h-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-gray-700/30 hover:shadow-xl transition-all duration-300">
+                <div className="group h-full glass-card glass-card-hover rounded-3xl p-5 sm:p-6">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl">
-                        <Award className="w-6 h-6 text-white" />
+                    <div className="flex items-center gap-4">
+                      <div className="icon-ring w-12 h-12">
+                        <Award className="w-5 h-5 text-glow-lavender" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 pr-6">
+                        <h3 className="text-base sm:text-lg font-bold tracking-tight text-ink pr-8 leading-snug">
                           {cert.name}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400 font-medium">
+                        <p className="text-glow-pink text-sm sm:text-base font-semibold">
                           {cert.issuer}
                         </p>
                       </div>
                     </div>
                     {cert.link && (
-                      <div className="absolute top-6 right-6">
-                        <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors duration-300" />
+                      <div className="absolute top-5 right-5 sm:top-6 sm:right-6">
+                        <ExternalLink className="w-4 h-4 text-ink-muted group-hover:text-ink transition-colors duration-300" />
                       </div>
                     )}
                   </div>
 
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
-                      <Calendar className="w-4 h-4 text-gray-500" />
-                      <span className="text-gray-600 dark:text-gray-400 text-sm">
+                      <Calendar className="w-4 h-4 text-ink-muted" />
+                      <span className="text-ink-muted text-sm font-medium">
                         Issued: {cert.date}
                       </span>
                     </div>
-                    
+
                     <div className="flex items-center justify-between pt-2">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                      <span className="chip text-xs font-semibold px-3 py-0.5 text-glow-cyan gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-glow-cyan shadow-[0_0_6px_rgba(34,211,238,0.9)]" />
                         {cert.status}
                       </span>
                     </div>
@@ -120,7 +118,7 @@ export default function Certifications() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-ink-muted">
             Continuously pursuing additional certifications to stay updated with emerging technologies.
           </p>
         </div>

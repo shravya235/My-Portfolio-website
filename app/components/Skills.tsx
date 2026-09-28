@@ -23,8 +23,8 @@ export default function Skills() {
         }
       });
 
-      gsap.fromTo('.skill-orb', { scale: 0, opacity: 0, rotationY: 180 }, {
-        scale: 1, opacity: 1, rotationY: 0, duration: 0.8, ease: 'back.out(1.7)', stagger: 0.1,
+      gsap.fromTo('.skill-orb', { y: 24, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.06,
         scrollTrigger: {
           trigger: '.skills-grid',
           start: 'top 80%',
@@ -33,8 +33,8 @@ export default function Skills() {
         }
       });
 
-      gsap.fromTo('.tech-orb', { scale: 0, opacity: 0, rotationX: 180 }, {
-        scale: 1, opacity: 1, rotationX: 0, duration: 0.8, ease: 'back.out(1.7)', stagger: 0.08,
+      gsap.fromTo('.tech-orb', { y: 24, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.05,
         scrollTrigger: {
           trigger: '.tech-grid',
           start: 'top 80%',
@@ -48,39 +48,29 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-gray-50/50 dark:bg-gray-900/50">
+    <section id="skills" ref={sectionRef} className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="skills-title text-4xl sm:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Skills & Expertise
-            </span>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="skills-title section-title">
+            Skills & Expertise
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
         </div>
 
         {/* Cybersecurity Skills */}
-        <div className="mb-20">
-          <h3 className="text-2xl font-semibold text-center mb-12 text-gray-800 dark:text-gray-100">Cybersecurity Skills</h3>
-          <div className="skills-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 justify-items-center">
-            {skillsData.cybersecuritySkills.map((skill, index) => {
+        <div className="glass-card glass-card-hover p-6 sm:p-10 mb-8 sm:mb-10">
+          <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-center mb-8 sm:mb-10 text-ink">Cybersecurity Skills</h3>
+          <div className="skills-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-4 gap-y-8 sm:gap-8 justify-items-center">
+            {skillsData.cybersecuritySkills.map((skill) => {
               const Icon = iconMap[skill.icon];
               return (
                 <div key={skill.name} className="skill-orb group flex flex-col items-center">
-                  <div className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"
-                    style={{
-                      top: `${Math.random() * 20 - 10}px`,
-                      left: `${Math.random() * 20 - 10}px`,
-                      animationDelay: `${index * 0.2}s`
-                    }} />
-                  <div className="relative w-20 h-20 mb-4 rounded-full">
-                    <div className={`absolute inset-0 rounded-full ${skill.bgColor} blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300`} />
-                    <div className="relative w-full h-full bg-gray-800/60 dark:bg-gray-700/60 backdrop-blur-xl rounded-full border border-gray-600/30 dark:border-gray-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-gray-700/70 dark:group-hover:bg-gray-600/70 transition-all duration-300 shadow-2xl">
-                      <Icon className="w-8 h-8 text-gray-300 dark:text-gray-200 group-hover:text-white transition-colors duration-300" />
+                  <div className="relative w-[72px] h-[72px] sm:w-20 sm:h-20 mb-3 sm:mb-4">
+                    <div className={`absolute inset-1 rounded-full ${skill.bgColor} blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
+                    <div className="icon-ring w-full h-full group-hover:-translate-y-1">
+                      <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-glow-lavender group-hover:text-ink transition-colors duration-300" />
                     </div>
-                    <div className="absolute top-2 left-2 w-4 h-4 bg-white/20 rounded-full blur-sm" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center max-w-20 leading-tight group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
+                  <span className="text-sm font-semibold text-ink-soft text-center max-w-[6rem] leading-tight group-hover:text-ink transition-colors duration-300">
                     {skill.name}
                   </span>
                 </div>
@@ -90,37 +80,30 @@ export default function Skills() {
         </div>
 
         {/* Technical Skills */}
-        <div>
-          <h3 className="text-2xl font-semibold text-center mb-12 text-gray-800 dark:text-gray-100">Technical Skills</h3>
-          <div className="tech-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 justify-items-center">
-            {skillsData.technicalSkills.map((skill, index) => {
+        <div className="glass-card glass-card-hover p-6 sm:p-10">
+          <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-center mb-8 sm:mb-10 text-ink">Technical Skills</h3>
+          <div className="tech-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-4 gap-y-8 sm:gap-8 justify-items-center">
+            {skillsData.technicalSkills.map((skill) => {
               const Icon = iconMap[skill.icon as keyof typeof iconMap];
               return (
                 <div key={skill.name} className="tech-orb group flex flex-col items-center">
-                  <div className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-bounce"
-                    style={{
-                      top: `${Math.random() * 15 - 7}px`,
-                      right: `${Math.random() * 15 - 7}px`,
-                      animationDelay: `${index * 0.15}s`
-                    }} />
-                  <div className="relative w-20 h-20 mb-4 rounded-full">
-                    <div className={`absolute inset-0 rounded-full ${skill.bgColor} blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-300`} />
-                    <div className="relative w-full h-full bg-gray-800/60 dark:bg-gray-700/60 backdrop-blur-xl rounded-full border border-gray-600/30 dark:border-gray-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-gray-700/70 dark:group-hover:bg-gray-600/70 transition-all duration-300 shadow-2xl">
+                  <div className="relative w-[72px] h-[72px] sm:w-20 sm:h-20 mb-3 sm:mb-4">
+                    <div className={`absolute inset-1 rounded-full ${skill.bgColor} blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
+                    <div className="icon-ring w-full h-full group-hover:-translate-y-1">
                       {Icon ? (
-                        <Icon className="w-8 h-8 text-gray-300 dark:text-gray-200 group-hover:text-white transition-colors duration-300" />
+                        <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-glow-cyan group-hover:text-ink transition-colors duration-300" />
                       ) : skill.icon.length <= 3 ? (
-                        <span className="text-xl sm:text-2xl font-bold text-gray-300 dark:text-gray-200 group-hover:text-white transition-colors duration-300 flex items-center justify-center w-8 h-8">
+                        <span className="text-xl sm:text-2xl font-bold text-glow-cyan group-hover:text-ink transition-colors duration-300 flex items-center justify-center w-8 h-8">
                           {skill.icon}
                         </span>
                       ) : (
-                        <span className="text-[32px] leading-none group-hover:scale-110 transition-transform duration-300 flex items-center justify-center w-8 h-8">
+                        <span className="text-[28px] sm:text-[32px] leading-none flex items-center justify-center w-8 h-8">
                           {skill.icon}
                         </span>
                       )}
                     </div>
-                    <div className="absolute top-2 left-2 w-4 h-4 bg-white/20 rounded-full blur-sm" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center max-w-20 leading-tight group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
+                  <span className="text-sm font-semibold text-ink-soft text-center max-w-[6rem] leading-tight group-hover:text-ink transition-colors duration-300">
                     {skill.name}
                   </span>
                 </div>

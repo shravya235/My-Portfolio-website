@@ -17,8 +17,8 @@ export function MotionCard({ children, className = "" }: MotionCardProps) {
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["4deg", "-4deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-4deg", "4deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!ref.current) return;
@@ -54,7 +54,7 @@ export function MotionCard({ children, className = "" }: MotionCardProps) {
         transformStyle: "preserve-3d",
       }}
       className={`relative w-full h-full pb-2 ${className}`}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.015 }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
       <div
