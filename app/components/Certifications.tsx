@@ -96,20 +96,11 @@ export default function Certifications() {
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="w-4 h-4 text-ink-muted" />
-                      <span className="text-ink-muted text-sm font-medium">
-                        Issued: {cert.date}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-2">
-                      <span className="chip text-xs font-semibold px-3 py-0.5 text-glow-cyan gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-glow-cyan shadow-[0_0_6px_rgba(34,211,238,0.9)]" />
-                        {cert.status}
-                      </span>
-                    </div>
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-4 h-4 text-ink-muted" />
+                    <span className="text-ink-muted text-sm font-medium">
+                      Issued: {cert.date}
+                    </span>
                   </div>
                 </div>
               </a>

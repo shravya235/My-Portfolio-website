@@ -56,7 +56,6 @@ interface Certification {
   name: string;
   issuer: string;
   date: string;
-  status: string; // e.g., "Active", "Expired"
   link?: string;
 }
 
@@ -228,7 +227,6 @@ export const certifications: Certification[] = [
   name: "International Conference on Secure IoT and Cybersecurity (ICOSICS 2026)",
   issuer: "IEEE",
   date: "Sept 25 2026",
-  status: "Completed",
   link: "https://drive.google.com/file/d/1ZAsMNvVin24cUt-IVurqOWYdEzty8Lib/view?usp=sharing"
   },
 
@@ -236,7 +234,6 @@ export const certifications: Certification[] = [
   name: "AWS Cloud Practitioner Essentials",
   issuer: "Amazon Web Services (AWS)",
   date: "July 2026",
-  status: "Completed",
   link: "https://drive.google.com/file/d/1v_1FPODWTJI3p-eRvCdxTVqdrgZSdgIe/view?usp=sharing"
   },
 
@@ -244,106 +241,98 @@ export const certifications: Certification[] = [
     name: "Internet Crimes and Cyber security",
     issuer: "NPTEL (SWAYAM)",
     date: "April 2025",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1Xr_Wrwhh7S5eyQeXguIqMMTfxZUuGKsX/view?usp=sharing"
+  },
+
+   {
+    name: "2nd Place - AI Hackathon 2026",
+    issuer: "Flinders University, Adelaide, South Australia",
+    date: "March 2026",
+    link: "https://drive.google.com/file/d/1qI2dGolV5eIB4ZZPZMoYihyrPO2UvxLy/view"
   },
 
    {
     name: "Runner-Up Certificate - Her-a-thon Hackathon",
     issuer: "Finite Loop Club, NMAM Institute of Technology",
     date: "March 14 2026",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1FoI_4jP0iu_MKW3kD12D94-ocpXm5JE0/view"
   },
   {
-    name: "Certificate of Appreciation - Idea Hackathon",
+    name: "Top 6 Finalist - Idea Hackathon",
     issuer: "Ayush Habba 2026",
     date: "Feb 1 2026",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1EeVRznB8R4qB6S0P_ZBrt2ERoTED9rYB/view"
   },
    {
     name: "Hedera Blockchain Workshop",
     issuer: "NITTE, IDS & Hedera",
     date: "Oct 25 2025",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1eB7mvj972fKWKr3gd3pigql0bMg4Hkvp/view"
   },
   {
     name: "Cybersecurity Bootcamp and CTF Competition",
     issuer: "CySecK - K-Tech CoE for Cyber Security",
     date: "Oct 31 2025",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1L4oGf5uZc4DqQP4zD5Vrbp3EIoretPEW/view"
   },
   {
     name: "Internship Completion Certificate (Cyber Security)",
     issuer: "Thaniya Technologies",
     date: "July 28 2025",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1ymiUVVa6YLWWmI74jovgLtcmOIRNyAHy/view"
   },
   {
     name: "CodeFury 8.0 Hackathon",
     issuer: "IEEE UVCE Computer Society & ARTPARK",
     date: "Aug 24 2025",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1ujKXypnHxRy7IPLOFGArQqf7giuhRfDv/view"
   },
   {
     name: "Privacy-Preserving Federated Learning Internship",
     issuer: "Nitte Centre of Excellence for Applied AI, NMAM Institute of Technology",
     date: "June 2025 - August 2025",
-    status: "Completed",
     link:"https://drive.google.com/file/d/1yD-OmUyvZsXny8znFX6-h5132KCJ_hs1/view"
   },
   {
     name: "Joint Secretary - PROTON (Cybersecurity Association)",
     issuer: "Department of Cybersecurity, NMAM Institute of Technology",
     date: "Academic Year 2024 - 2025",
-    status: "Completed",
     link:"https://drive.google.com/file/d/12FurNiHyfLArQI6IPN7R2cQ5IkKHM47d/view"
   },
   {
     name: "Cybersecurity Analyst Job Simulation",
     issuer: "Tata Group via Forage",
     date: "March 2025",
-    status: "Completed",
     link:"https://drive.google.com/file/d/1toEyS6L6HyE1LEXzFu-dQRq1JjaTbZZ2/view"
   },
   {
     name: "Career Essentials in Cybersecurity",
     issuer: "LinkedIn & Microsoft",
     date: "Sept 2024",
-    status: "Completed",
     link:"https://drive.google.com/file/d/1dGlZBTUSsQN68wTOuELIEcwsBGLfUvBg/view"
   },
   {
     name: "Systems and Usable Security",
     issuer: "NPTEL (SWAYAM)",
     date: "April 2025",
-    status: "Completed",
     link:"https://drive.google.com/file/d/1yjxi_6wO8x1aWPaggP5T20yYS7ZkcYL9/view"
   },
   {
     name: "AI & Machine Learning",
     issuer: "Skill India Digital Hub",
     date: "June 2025",
-    status: "Completed",
     link:"https://drive.google.com/file/d/1rPu78whtcczeMOTdttRDNm-VFtN-aPdW/view"
   },
     {
     name: "Internal Ideathon of SIH 2024",
     issuer: "NMAMIT & Finite Loop",
     date: "August 31, 2024",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1ONTfoljN2DGx_kdM4Avbufds9Ay6aMjm/view"
   },
   {
     name: "Web Development Internship",
     issuer: "SystemTron",
     date: "July 2024",
-    status: "Completed",
     link: "https://drive.google.com/file/d/1xBV5bMBBlLOg_J5-HACORh9nJVyrV8Nu/view"
   }
 ];
