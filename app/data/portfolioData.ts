@@ -1,6 +1,9 @@
 ﻿// data/portfolioData.ts
 import type { IconName, LucideIcon, ProjectIcon } from '@/utils/icons';
 
+// Put your resume at public/resume.pdf, or replace this with a Google Drive / external link
+export const resumeUrl = "/resume.pdf";
+
 export const aboutData = {
   title: "About Me",
   description: [

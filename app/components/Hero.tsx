@@ -3,8 +3,9 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Github, Linkedin, ChevronDown } from 'lucide-react';
-import img from '../images/Shravya.png'; // Adjust the path as necessary
+import { Github, Linkedin, ChevronDown, FileText } from 'lucide-react';
+import img from '../images/Shravya.jpg'; // Adjust the path as necessary
+import { resumeUrl } from '../data/portfolioData';
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -51,79 +52,89 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden text-gray-900 dark:text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between space-y-10 lg:space-y-0">
+    <section ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28 pb-16 sm:pt-32 text-ink">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
           {/* Left - Text Content */}
           <div className="text-center lg:text-left space-y-8 lg:w-1/2">
-            <div className="space-y-4">
-              <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl font-bold">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
+            <div className="space-y-5">
+              <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-ink">
+                <span>
                   Shravya R
                 </span>
               </h1>
 
-              <h2 className="hero-subtitle flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-700 dark:text-gray-300">
-                <span className="whitespace-nowrap">Software Developer</span>
-                <span className="hidden sm:inline text-gray-400 dark:text-gray-600">|</span>
-                <span className="whitespace-nowrap">Cybersecurity Enthusiast</span>
+              <h2 className="hero-subtitle flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-xl sm:text-2xl lg:text-[1.75rem] font-bold tracking-tight">
+                <span className="whitespace-nowrap text-glow-pink">Software Developer</span>
+                <span className="hidden sm:inline text-ink-muted/60 font-medium">|</span>
+                <span className="whitespace-nowrap text-glow-cyan">Cybersecurity Enthusiast</span>
               </h2>
 
-              <p className="hero-description text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="hero-description text-base sm:text-lg text-ink-soft max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Passionate about building practical software solutions and exploring cybersecurity, cloud technologies, and emerging technologies.
                 I enjoy solving problems, learning how systems work, and turning ideas into real-world applications.
               </p>
             </div>
 
-            <div className="hero-links flex justify-center lg:justify-start space-x-6">
+            <div className="hero-links flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-solid px-7 py-3"
+              >
+                <FileText className="w-5 h-5" />
+                <span>View Resume</span>
+              </a>
+
               <a
                 href="https://github.com/shravya235"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center space-x-2 px-6 py-3 bg-white/50 dark:bg-white/10 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                className="group btn-glass px-6 py-3"
               >
-                <Github className="w-5 h-5 group-hover:text-blue-500 transition-colors duration-200" />
-                <span className="font-medium text-gray-800 dark:text-white">GitHub</span>
+                <Github className="w-5 h-5 text-glow-lavender group-hover:text-ink transition-colors duration-300" />
+                <span>GitHub</span>
               </a>
 
               <a
                 href="https://www.linkedin.com/in/shravya-r-32913028b/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center space-x-2 px-6 py-3 bg-white/50 dark:bg-white/10 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                className="group btn-glass px-6 py-3"
               >
-                <Linkedin className="w-5 h-5 group-hover:text-blue-500 transition-colors duration-200" />
-                <span className="font-medium text-gray-800 dark:text-white">LinkedIn</span>
+                <Linkedin className="w-5 h-5 text-glow-cyan group-hover:text-ink transition-colors duration-300" />
+                <span>LinkedIn</span>
               </a>
             </div>
           </div>
 
 
           {/* Right - Image */}
-<div className="lg:w-1/2 flex justify-center relative">
+<div className="order-first lg:order-none lg:w-1/2 flex justify-center relative">
   <motion.div
     initial={{ scale: 0.9, opacity: 0 }}
     animate={{ scale: 1, opacity: 1 }}
     transition={{ duration: 0.8, ease: 'easeOut' }}
-    className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl"
+    className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden shadow-[0_30px_80px_-30px_rgba(10,0,40,0.9),0_0_70px_-10px_rgba(168,85,247,0.55)]"
   >
-    {/* White Glowing Background Circle */}
+    {/* Glowing Background Circle */}
     <motion.div
       initial={{ scale: 1.2, opacity: 0 }}
-      animate={{ scale: 1, opacity: 0.12 }}
+      animate={{ scale: 1, opacity: 0.35 }}
       transition={{ duration: 1.2, ease: 'easeOut' }}
-      className="absolute inset-0 rounded-full bg-blue-500 dark:bg-white blur-[60px] z-0"
+      className="absolute inset-0 rounded-full bg-fuchsia-400 blur-[60px] z-0"
     />
 
-    {/* White Ring Border */}
-    <div className="absolute inset-0 rounded-full border-[6px] border-blue-500/30 dark:border-white/30 z-10" />
+    {/* Ring Border */}
+    <div className="absolute inset-0 rounded-full border-[6px] border-white/25 shadow-[inset_0_0_30px_rgba(216,180,254,0.35)] z-30 pointer-events-none" />
 
     {/* Left Bracket */}
     <motion.div
       initial={{ x: -20, opacity: 0 }}
       animate={{ x: 0, opacity: 0.2 }}
       transition={{ delay: 0.8, duration: 1 }}
-      className="absolute -left-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-gray-500 dark:text-white z-0"
+      className="absolute -left-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-glow-lavender z-0"
     >
       &lt;
     </motion.div>
@@ -133,7 +144,7 @@ export default function Hero() {
       initial={{ x: 20, opacity: 0 }}
       animate={{ x: 0, opacity: 0.2 }}
       transition={{ delay: 0.8, duration: 1 }}
-      className="absolute -right-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-gray-500 dark:text-white z-0"
+      className="absolute -right-10 top-1/2 -translate-y-1/2 text-6xl font-bold text-glow-lavender z-0"
     >
       &gt;
     </motion.div>
@@ -150,12 +161,6 @@ export default function Hero() {
 
         </div>
         
-      </div>
-
-      {/* Background Decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-emerald-400/20 to-blue-600/20 rounded-full blur-3xl" />
       </div>
     </section>
   );
