@@ -82,22 +82,22 @@ export default function FlyingBirdsBackground() {
     
     // In dark mode, birds should be light/bright so they stand out
     const darkPalette = [
-      '100, 116, 139',
-      '148, 163, 184',
-      '203, 213, 225',
-      '241, 245, 249',
-      '248, 250, 252',
+      '196, 181, 253',
+      '216, 180, 254',
+      '233, 213, 255',
+      '245, 208, 254',
+      '250, 245, 255',
       '255, 255, 255'
     ];
-    
+
     // In light mode, birds should be darker so they stand out
     const lightPalette = [
-      '15, 23, 42',
-      '30, 41, 59',
-      '51, 65, 85',
-      '71, 85, 105',
-      '100, 116, 139',
-      '148, 163, 184'
+      '46, 16, 101',
+      '76, 29, 149',
+      '91, 33, 182',
+      '109, 40, 217',
+      '134, 25, 143',
+      '124, 58, 237'
     ];
     
     const palette = isLightMode ? lightPalette : darkPalette;
@@ -428,10 +428,9 @@ export default function FlyingBirdsBackground() {
     birdsRef.current = Array.from({ length: 25 }, () => createBird(dimensions.width, dimensions.height));
 
     const animate = (time: number) => {
-      // Clear canvas with slight fade for trail effect using correct theme color
-      const isLightMode = isLightRef.current;
-      ctx.fillStyle = isLightMode ? 'rgba(248, 250, 252, 0.2)' : 'rgba(15, 23, 42, 0.1)';
-      ctx.fillRect(0, 0, dimensions.width, dimensions.height);
+      // Keep the canvas transparent so the global backdrop shows through;
+      // trails are drawn explicitly per bird
+      ctx.clearRect(0, 0, dimensions.width, dimensions.height);
 
       // Update birds
       updateBirds(birdsRef.current, mouseRef.current);
@@ -465,65 +464,16 @@ export default function FlyingBirdsBackground() {
   }, [dimensions]);
 
   if (!mounted) {
-    return (
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -1 }}>
-        <div className="absolute inset-0 bg-slate-900" />
-      </div>
-    );
+    return null;
   }
 
+  // The gradient, glow and grain live in the global <Backdrop />; this layer only adds the birds
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none transition-colors duration-500" style={{ zIndex: -1 }}>
+    <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -1 }}>
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full transition-colors duration-500"
-        style={{ 
-          background: isLight 
-            ? 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)'
-            : 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
-        }}
-      />
-      
-      {/* Sky gradient overlays */}
-      <div className={`absolute inset-0 transition-colors duration-500 ${
-        isLight
-          ? 'bg-gradient-to-b from-blue-100/40 via-transparent to-slate-200/50'
-          : 'bg-gradient-to-b from-blue-900/20 via-transparent to-slate-800/30'
-      }`} />
-      <div className={`absolute inset-0 transition-colors duration-500 ${
-        isLight
-          ? 'bg-gradient-to-t from-slate-200/60 via-transparent to-blue-100/40'
-          : 'bg-gradient-to-t from-slate-900/40 via-transparent to-blue-900/20'
-      }`} />
-      
-      {/* Subtle cloud-like patterns */}
-      <div 
-        className="absolute inset-0 transition-opacity duration-500"
-        style={{
-          opacity: isLight ? 0.4 : 0.1,
-          background: isLight
-            ? `
-              radial-gradient(ellipse 800px 200px at 20% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
-              radial-gradient(ellipse 600px 150px at 80% 40%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
-              radial-gradient(ellipse 400px 100px at 40% 80%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)
-            `
-            : `
-              radial-gradient(ellipse 800px 200px at 20% 20%, rgba(148, 163, 184, 0.1) 0%, transparent 50%),
-              radial-gradient(ellipse 600px 150px at 80% 40%, rgba(203, 213, 225, 0.08) 0%, transparent 50%),
-              radial-gradient(ellipse 400px 100px at 40% 80%, rgba(148, 163, 184, 0.06) 0%, transparent 50%)
-            `
-        }}
-      />
-      
-      {/* Atmospheric perspective */}
-      <div 
-        className="absolute inset-0 transition-opacity duration-500"
-        style={{
-          opacity: isLight ? 0.2 : 0.3,
-          background: isLight 
-            ? 'radial-gradient(ellipse at center, transparent 0%, rgba(148, 163, 184, 0.3) 100%)'
-            : 'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.3) 100%)',
-        }}
+        className="absolute inset-0 w-full h-full"
+        style={{ opacity: isLight ? 0.35 : 0.45 }}
       />
     </div>
   );
