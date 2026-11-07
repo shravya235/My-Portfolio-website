@@ -76,6 +76,17 @@ interface Achievement {
   link?: string;
 }
 
+interface Publication {
+  title: string;
+  publisher: string;
+  conference: string;
+  year: string;
+  authors: string[];
+  description: string;
+  doi: string;
+  url: string;
+}
+
 interface Project {
   title: string;
   description: string;
@@ -439,6 +450,32 @@ export const projects: Project[] = [
     github: "https://github.com/shravya235/ShopSmart",
     demo: "https://shopsmart-store.vercel.app/",
     color: "from-yellow-400 to-orange-500"
+  }
+];
+
+// Name used to highlight your own entry in each publication's author list
+export const publicationAuthorName = "Shravya R";
+
+export const publications: Publication[] = [
+  {
+    title: "Adaptive Cryptographic Confidential Computing Framework for Continuous Cloud Data Protection",
+    publisher: "IEEE",
+    conference: "2026 5th International Conference on Innovative Practices in Technology and Management (ICIPTM)",
+    year: "2026",
+    authors: ["Varshitha B A", "Shravya R", "Shreeraksha M", "Ajay Vikram Singh", "Vijaya Padmanabha"],
+    description: "Research on an adaptive cryptographic framework for continuous cloud data protection, combining confidential computing, sensitivity-based encryption, secure key management, and automatic key rotation.",
+    doi: "10.1109/ICIPTM69057.2026.11465448",
+    url: "https://ieeexplore.ieee.org/document/11465448"
+  },
+  {
+    title: "Behavioral Sensitivity Analysis for Malware Detection through Controlled Feature Perturbation",
+    publisher: "IEEE",
+    conference: "2026 International Conference on Secure IoT and Cybersecurity (ICOSICS)",
+    year: "2026",
+    authors: ["Ashmi K Kotian", "Shravya R"],
+    description: "Research on evaluating machine learning-based malware detection models using controlled feature perturbations and Behavioral Sensitivity Scores to understand model prediction stability and feature importance.",
+    doi: "10.1109/ICOSICS70095.2026.11746574",
+    url: "https://ieeexplore.ieee.org/document/11746574"
   }
 ];
 

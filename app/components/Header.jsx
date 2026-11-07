@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Code, Zap, Sparkles, ChevronDown, Trophy } from 'lucide-react';
+import { Menu, X, Code, Zap, Sparkles, ChevronDown, Trophy, BookOpen } from 'lucide-react';
 
 export default function AdvancedHeader() {
   const [mounted, setMounted] = useState(false);
@@ -20,7 +20,7 @@ export default function AdvancedHeader() {
           setScrolled(scrollTop > 50);
 
           // Update active section based on scroll position
-          const sections = ['about', 'skills', 'experience', 'education', 'projects', 'achievements', 'certifications', 'contact'];
+          const sections = ['about', 'skills', 'experience', 'education', 'projects', 'publications', 'achievements', 'certifications', 'contact'];
           const currentSection = sections.find(section => {
             const element = document.getElementById(section);
             if (element) {
@@ -67,6 +67,7 @@ export default function AdvancedHeader() {
     { name: 'Experience', href: '#experience', icon: <Zap className="w-4 h-4" /> },
     { name: 'Education', href: '#education', icon: <ChevronDown className="w-4 h-4" /> },
     { name: 'Projects', href: '#projects', icon: <Code className="w-4 h-4" /> },
+    { name: 'Publications', href: '#publications', icon: <BookOpen className="w-4 h-4" /> },
     { name: 'Achievements', href: '#achievements', icon: <Trophy className="w-4 h-4" /> },
     { name: 'Certifications', href: '#certifications', icon: <Sparkles className="w-4 h-4" /> },
     { name: 'Contact', href: '#contact', icon: <Zap className="w-4 h-4" /> },
@@ -95,16 +96,16 @@ export default function AdvancedHeader() {
               </h1>
             </button>
 
-            <div className="flex items-center gap-2 xl:gap-4">
-              {/* Desktop Navigation */}
-              <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+            <div className="flex items-center gap-2 xl:gap-3">
+              {/* Desktop Navigation (xl and up, so all nine items fit without crowding) */}
+              <nav className="hidden xl:flex items-center gap-0.5">
                 {linkItems.map((item, index) => {
                   const isActive = activeSection === item.name.toLowerCase();
                   return (
                     <a
                       key={item.name}
                       href={item.href}
-                      className={`relative px-2.5 xl:px-3.5 py-2 rounded-full text-[14px] xl:text-[15px] font-semibold transition-colors duration-300 ${
+                      className={`relative px-2.5 py-2 rounded-full text-[14px] font-semibold whitespace-nowrap transition-colors duration-300 ${
                         isActive ? 'text-ink' : 'text-ink/75 hover:text-ink'
                       }`}
                       style={{
@@ -126,7 +127,7 @@ export default function AdvancedHeader() {
 
               <a
                 href={ctaItem.href}
-                className={`btn-glass hidden lg:inline-flex text-[14px] xl:text-[15px] px-5 py-2 xl:px-6 xl:py-2.5 ${
+                className={`btn-glass hidden xl:inline-flex text-[14px] px-5 py-2.5 ${
                   activeSection === ctaItem.name.toLowerCase() ? 'border-glow-pink/60' : ''
                 }`}
                 style={{
@@ -139,7 +140,7 @@ export default function AdvancedHeader() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="icon-ring lg:hidden w-10 h-10"
+                className="icon-ring xl:hidden w-10 h-10"
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMenuOpen}
               >
@@ -153,11 +154,11 @@ export default function AdvancedHeader() {
           </div>
 
           {/* Mobile Navigation */}
-          <div className={`lg:hidden overflow-hidden transition-all duration-500 ${
-            isMenuOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
+          <div className={`xl:hidden transition-all duration-500 ${
+            isMenuOpen ? 'max-h-[calc(100dvh-6.5rem)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'
           }`}>
             <div className="pt-2 pb-4 border-t border-[color:var(--glass-border)]">
-              <nav className="grid grid-cols-1 sm:grid-cols-2 gap-1 pt-2">
+              <nav className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 pt-2">
                 {navigation.map((item, index) => {
                   const isActive = activeSection === item.name.toLowerCase();
                   return (
