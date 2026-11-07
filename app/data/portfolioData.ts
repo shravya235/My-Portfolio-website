@@ -7,10 +7,9 @@ export const resumeUrl = "/resume.pdf";
 export const aboutData = {
   title: "About Me",
   description: [
-  "I am a final year Computer Science and Engineering student specializing in Cybersecurity with hands-on experience in software development, web security, cloud technologies and machine learning.",
+  "I am a final year Computer Science and Engineering student specializing in Cybersecurity with hands-on experience in software development, web security, android development, cloud technologies and machine learning.",
   "I enjoy building practical solutions, exploring how systems work and solving real-world problems through technology.",
-  "Through internships, research, projects and hackathons, I have worked across software development, cybersecurity and AI while continuously learning and experimenting with new technologies.",
-  "Beyond technology, I am learning Japanese and exploring its culture while always looking for opportunities to build, learn and grow."
+  "Through internships, research, projects and hackathons, I have worked across software development, cybersecurity and AI while continuously learning and experimenting with new technologies."
 ],
   stats: [
     { label: "Projects", value: "8+" },

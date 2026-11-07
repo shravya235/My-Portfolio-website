@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,11 +68,6 @@ export default function Contact() {
               icon={<Mail className="text-glow-lavender w-5 h-5" />}
               title="Email"
               value="shravya11r@gmail.com"
-            />
-            <ContactItem
-              icon={<Phone className="text-glow-cyan w-5 h-5" />}
-              title="Phone"
-              value="+91 7892848220"
             />
             <ContactItem
               icon={<MapPin className="text-glow-pink w-5 h-5" />}
